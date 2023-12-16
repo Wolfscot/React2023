@@ -1,15 +1,21 @@
-import React, { useContext, useState } from 'react'
-import './Navbar.css'
-import { Link } from 'react-router-dom'
+import "./navbar.css"
 
-import Nav from 'react-bootstrap/Nav';
+import logo from "../../assets/logo.png"
 
-function Navbar() {
-    return (
-      <Nav>
-        
-      </Nav>
-    );
-  }
-  
-  export default Navbar;
+const Navbar = () => {
+  return (
+    <div className="navbar">
+      <div className="nav-container">
+        <span className="logo">
+          <img src={logo} alt="Logo" width="150" height="100" />          
+        </span>
+        <div className="nav-items">
+          <button className="nav-btn">Register</button>
+          <button className="nav-btn">Login</button>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+export default Navbar
