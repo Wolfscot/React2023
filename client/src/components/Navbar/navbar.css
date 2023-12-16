@@ -1,15 +1,28 @@
-.navbar {
-    height: 50px;
-    background-color: #003580;
-    display: flex;
-    justify-content:center;
+.navbar{
+  height: 50px;
+  background-color: #003580;
+  display: flex;
+  justify-content: center;
 }
-.nav-container {
-    width: 100%;
-    max-width: 1300px;
-    color: #fff;
+
+.nav-container{
+  width: 100%;
+  max-width: 1300px;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
-.logo {
-    height: 50px;
-    width: 50px;
+
+.logo{
+  font-weight: 500;
+}
+
+.nav-btn{
+  margin-left: 20px;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  background-color: #003580;
+  color: #fff;
 }
