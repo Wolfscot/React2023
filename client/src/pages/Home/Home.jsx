@@ -1,9 +1,12 @@
 
-
-
 import Navbar from "../../components/Navbar/Navbar";
 import Header from "../../components/Header/Header";
 import Footer from "../../components/footer/Footer";
+
+import Featured from "../../components/Featured/Featured";
+import FeaturedProperties from "../../components/FeaturedProperties/FeaturedProperties";
+import PropertyList from "../../components/PropertyList/PropertyList";
+import MailList from "../../components/MailList/MailList";
 import "./home.css"
 
 const Home = () => {
