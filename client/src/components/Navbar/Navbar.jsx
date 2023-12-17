@@ -10,8 +10,8 @@ const Navbar = () => {
           TellMeTraveler          
         </span>
         <div className="nav-items">
-          <button className="nav-btn">Register</button>
-          <button className="nav-btn">Login</button>
+          <button className="nav-btn">Регистрация</button>
+          <button className="nav-btn">Вход</button>
         </div>
       </div>
     </div>
