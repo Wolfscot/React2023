@@ -12,7 +12,7 @@ const Home = () => {
       <Navbar />
       <Header />
       <div className="home-container">
-        
+        <Featured/>
         <h1 className="home-title">Търсете по тип място за настаняване</h1>
         <p className="home-desc">Най-популярните избори за пътуващи от България</p>
         <PropertyList />
