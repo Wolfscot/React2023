@@ -4,16 +4,11 @@ import bansko from "../../assets/images/bansko.jpg"
 import plovdiv from "../../assets/images/plovdiv.png"
 
 const Featured = () => {
-    const { data, loading, error } = useFetch(
-      "/hotels/countByCity?cities=sofia,plovdiv,bansko"
-    );
-  
+    
     return (
       <div className="featured">
-        {loading ? (
-          "Loading please wait"
-        ) : (
-          <>
+       
+          
             <div className="featured-item">
               <img
                 src={sofia}
@@ -47,9 +42,8 @@ const Featured = () => {
                 <h1>Пловдив</h1>
                 <h2>123 места за настаняване</h2>
               </div>
-            </div>
-          </>
-        )}
+            </div>         
+    
       </div>
     );
   };

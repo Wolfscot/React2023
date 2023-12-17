@@ -42,7 +42,7 @@ const Header = ({ type }) => {
     return (
 
         <div className="header">
-            <div className={type === "list" ? "header-container listMode" : "header-Container"}>
+            <div className={type === "list" ? "header-container listMode" : "header-container"}>
                 <div className="header-list">
                     <div className="header-list-item active">
                         <FontAwesomeIcon icon={faBed} />
@@ -95,6 +95,7 @@ const Header = ({ type }) => {
                             <div className="header-search-item">
                                 <FontAwesomeIcon icon={faPerson} className="header-icon" />
                                 <span className="header-search-text" onClick={() => setOpenOptions(!openOptions)}>{`${options.adult} възрастни · ${options.children} деца · ${options.room} стаи`}</span>
+                                {openOptions && (
                                 <div className="options">
                                     <div className="option-item">
                                         <span className="option-text">Възрастни</span>
@@ -122,7 +123,9 @@ const Header = ({ type }) => {
                                         </div>
                                     </div>
                                 </div>
+                            )}
                             </div>
+                                
                             <div className="header-search-item">
                                 <button className="header-btn">Търсене</button>
                             </div>

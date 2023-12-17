@@ -9,7 +9,7 @@ const Footer = () => {
           <li className="f-list-item">Hotels</li>          
         </ul>
        </div>
-      <div className="f-text">Copyright © 2022 TellMeTraveler.</div>
+      <div className="f-text">Copyright © 2023 TellMeTraveler.</div>
     </div>
   );
 };

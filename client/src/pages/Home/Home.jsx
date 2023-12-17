@@ -1,7 +1,7 @@
 
 import Navbar from "../../components/Navbar/Navbar";
 import Header from "../../components/Header/Header";
-import Footer from "../../components/footer/Footer";
+import Footer from "../../components/Footer/Footer";
 
 import Featured from "../../components/Featured/Featured";
 import FeaturedProperties from "../../components/FeaturedProperties/FeaturedProperties";
