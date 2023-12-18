@@ -2,7 +2,9 @@ import React, { useState } from "react";
 
 import { useForm } from 'react-hook-form';
 import CreatableSelect from "react-select/creatable";
+
 const CreateJob = () => {
+  const [selectedOption, setSelectedOption] = useState(null);
   const {
     register,
     handleSubmit,
@@ -177,7 +179,7 @@ const CreateJob = () => {
               rows={6}
               {...register("description")}
               placeholder="job description"
-              defaultValue={"Mollit in laborum tempor Lorem incididunt irure. Aute eu ex ad sunt. Pariatur sint culpa do incididunt eiusmod eiusmod culpa. laborum tempor Lorem incididunt."}
+              defaultValue={"Lorem ipsum"}
             />
           </div>
 
