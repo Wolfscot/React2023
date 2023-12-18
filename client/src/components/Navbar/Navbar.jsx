@@ -47,10 +47,10 @@ const Navbar = () => {
                 </div>
             </nav>
             {/* mobile nav items */}
-            <div  className={`px-4 bg-black py-5 rounded-sm ${isMenuOpen ? "" : "hidden" }`} >
+            <div  className={`px-4 border py-5 rounded-sm ${isMenuOpen ? "" : "hidden" }`} >
                 <ul>
                     {navItems.map(({ path, title }) => (
-                        <li key={path} className="text-base text-white first:text-white py-1" >
+                        <li key={path} className="text-base text-white py-1" >
                             <NavLink
                                 onClick={handleMenuToggler}
                                 to={path}
