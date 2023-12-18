@@ -1,6 +1,7 @@
 import Banner from "../../components/Banner/Banner";
 import Card from "../../components/Card/Card";
 import Jobs from "../Jobs/Jobs";
+import Sidebar from "../../components/Sidebar/Sidebar";
 
 
 import { useEffect, useState } from "react";
@@ -103,7 +104,7 @@ const Home = () => {
       <Banner query={query} handleInputChange={handleInputChange} />
       <div className="bg-[#FAFAFA] md:grid grid-cols-4 gap-8 lg:px-24 px-4 py-12">
         <div className="bg-white p-4 rounded">
-         
+          <Sidebar handleChange={handleChange} handleClick={handleClick} />
         </div>
         <div className="col-span-2 bg-white p-4 rounded">
           
