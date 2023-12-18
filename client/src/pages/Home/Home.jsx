@@ -2,7 +2,7 @@ import Banner from "../../components/Banner/Banner";
 import Card from "../../components/Card/Card";
 import Jobs from "../Jobs/Jobs";
 import Sidebar from "../../components/Sidebar/Sidebar";
-
+import Newsletter from "../../components/Newsletter/Newsletter";
 
 import { useEffect, useState } from "react";
 
@@ -14,10 +14,16 @@ const Home = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 3;
 
+  const [isLoading, setIsLoading] = useState(true);
+
   useEffect(() => {
+    setIsLoading(true);
     fetch("jobs.json").then(res => res.json())
       .then(data => {
         setJobs(data);
+        //setCurrentPage(1);
+        setIsLoading(false);
+
       })
   }, [])
 
@@ -29,11 +35,32 @@ const Home = () => {
   };
 
   const handleChange = (event) => {
-    setSelectedCategory(event.target.value);
+    setselectedCategory(event.target.value);
 
   };
   const handleClick = (event) => {
-    setSelectedCategory(event.target.value);
+    setselectedCategory(event.target.value);
+  };
+
+  // pagination/
+  const calculatePageRange = () => {
+    const startIndex = (currentPage - 1) * itemsPerPage;
+    const endIndex = startIndex + itemsPerPage;
+    return { startIndex, endIndex };
+  };
+
+  //  next page
+  const nextPage = () => {
+    if (currentPage < Math.ceil(filteredItems.length / itemsPerPage)) {
+      setCurrentPage(currentPage + 1);
+    }
+  };
+
+  //  prev page
+  const prevPage = () => {
+    if (currentPage > 1) {
+      setCurrentPage(currentPage - 1);
+    }
   };
 
 
@@ -72,6 +99,8 @@ const Home = () => {
       );
       console.log(filteredJobs);
     }
+    const { startIndex, endIndex } = calculatePageRange();
+    filteredJobs = filteredJobs.slice(startIndex, endIndex);
 
     return filteredJobs.map((data, i) => <Card key={i} data={data} />);
 
@@ -79,26 +108,7 @@ const Home = () => {
 
   const result = filteredData(jobs, selectedCategory, query);
 
-  // pagination/
-  const calculatePageRange = () => {
-    const startIndex = (currentPage - 1) * itemsPerPage;
-    const endIndex = startIndex + itemsPerPage;
-    return { startIndex, endIndex };
-  };
 
-  //  next page
-  const nextPage = () => {
-    if (currentPage < Math.ceil(filteredItems.length / itemsPerPage)) {
-      setCurrentPage(currentPage + 1);
-    }
-  };
-
-  //  prev page
-  const prevPage = () => {
-    if (currentPage > 1) {
-      setCurrentPage(currentPage - 1);
-    }
-  };
   return (
     <div>
       <Banner query={query} handleInputChange={handleInputChange} />
@@ -107,11 +117,18 @@ const Home = () => {
           <Sidebar handleChange={handleChange} handleClick={handleClick} />
         </div>
         <div className="col-span-2 bg-white p-4 rounded">
-          
-            
-        
+
+          {isLoading ? ( // Loading indicator
+            <p className="font-medium">The positions are filtering...</p>
+          ) : result.length > 0 ? (
             <Jobs result={result} />
-         
+          ) : (
+            <>
+              <h3 className="text-lg font-bold mb-2">{result.length} Jobs</h3>
+              <p>No data found.Search for Something Else</p>
+            </>
+          )}
+
 
           {/* pagination  */}
 
@@ -141,7 +158,10 @@ const Home = () => {
           ) : (
             ""
           )}
-        </div>        
+        </div>
+        <div className="bg-white p-4 rounded">
+          <Newsletter />
+        </div>
       </div>
     </div>
   )
