@@ -3,8 +3,17 @@ import { FiCalendar, FiClock, FiDollarSign, FiMapPin, FiSearch } from "react-ico
 import { Link } from "react-router-dom";
 
 const Card = ({ data }) => {
-   console.log(data);
-  const {_id,companyLogo, jobTitle, companyName, jobLocation, employmentType, minPrice,maxPrice, postingDate, description} = data;
+  console.log(data);
+  const { _id,
+    companyLogo,
+    jobTitle,
+    companyName,
+    jobLocation,
+    employmentType,
+    minPrice,
+    maxPrice,
+    postingDate,
+    description } = data;
   return (
     <div>
       <section className="card">
@@ -15,10 +24,10 @@ const Card = ({ data }) => {
             <h3 className="text-lg font-semibold mb-2">{jobTitle}</h3>
 
             <div className="text-primary/70 text-base flex flex-wrap gap-2 mb-2">
-              <span className="flex items-center gap-2"><FiMapPin/> {jobLocation}</span>
-              <span className="flex items-center gap-2"><FiClock/> {employmentType}</span>
-              <span className="flex items-center gap-2"><FiDollarSign/> {minPrice}-{maxPrice}k</span>
-              <span className="flex items-center gap-2"><FiCalendar/> {postingDate}</span>
+              <span className="flex items-center gap-2"><FiMapPin /> {jobLocation}</span>
+              <span className="flex items-center gap-2"><FiClock /> {employmentType}</span>
+              <span className="flex items-center gap-2"><FiDollarSign /> {minPrice}-{maxPrice}k</span>
+              <span className="flex items-center gap-2"><FiCalendar /> {postingDate}</span>
             </div>
 
             <p className="text-base text-primary/70 ">{description}</p>
