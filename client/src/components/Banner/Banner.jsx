@@ -9,8 +9,7 @@ const Banner = ({ handleInputChange, query }) => {
         Find your <span className="text-blue">new job</span> today
       </h1>
       <p className="text-lg text-black/70 mb-8">
-        Thousands of jobs in the computer, engineering and technology sectors
-        are waiting for you.
+        Thousands of jobs in the computer sectors are waiting for you.Join us now!
       </p>
 
       <form className="">

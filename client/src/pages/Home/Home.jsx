@@ -1,6 +1,11 @@
 import Banner from "../../components/Banner/Banner";
+import Card from "../../components/Card/Card";
+import Jobs from "../Jobs/Jobs";
+
 
 import { useEffect, useState } from "react";
+
+
 const Home = () => {
   const [selectedCategory, setselectedCategory] = useState(null);
   const [jobs, setJobs] = useState([]);
@@ -14,10 +19,19 @@ const Home = () => {
 
 
   const [query, setQuery] = useState("");
-
+  // handlers for search and filtering
   const handleInputChange = (event) => {
     setQuery(event.target.value);
+  };  
+  
+  const handleChange = (event) => {
+    setSelectedCategory(event.target.value);
+    
   };
+  const handleClick = (event) => {
+    setSelectedCategory(event.target.value);
+  };
+
 
   const filteredItems = jobs.filter(
     (job) => job.jobTitle.toLowerCase().indexOf(query.toLowerCase()) !== -1
@@ -27,12 +41,13 @@ const Home = () => {
     let filteredJobs = jobs;
     // Filtering Input Items
 
-    console.log(filteredItems)
+    
+    //Applying input search field
     if (query) {
       filteredJobs = filteredItems;
     }
 
-    // Applying selected filter
+    // Applying selected filters 
     if (selected) {
       console.log((selected));
 
@@ -54,10 +69,8 @@ const Home = () => {
       console.log(filteredJobs);
     }
 
+    return filteredJobs.map((data, i) => <Card key={i} data={data} />);
    
-    //filteredJobs = filteredJobs.slice(startIndex, endIndex);
-//
-    //return filteredJobs.map((data, i) => <Card key={i} data={data} />);
   };
 
   const result = filteredData(jobs, selectedCategory, query);
@@ -66,6 +79,9 @@ const Home = () => {
   return (
     <div>
       <Banner query={query} handleInputChange={handleInputChange} />
+      <div>
+          <Jobs result={result}/>
+      </div>
     </div>
   )
 }
