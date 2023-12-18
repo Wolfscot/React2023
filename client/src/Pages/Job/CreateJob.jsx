@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 import { useForm } from 'react-hook-form';
-//import CreatableSelect from "react-select/creatable";
+import CreatableSelect from "react-select/creatable";
 const CreateJob = () => {
   const {
     register,
@@ -9,7 +9,35 @@ const CreateJob = () => {
     formState: { errors },
     reset 
   } = useForm();
+  const onSubmit = (data) => {
+    data.skills = selectedOption;
+    fetch("http://localhost:5173/post-job", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data),
+    })
+      .then((res) => res.json())
+      .then((result) => {
+        // console.log(result);
+        if(result.acknowledged === true){
+          alert("Job Posted Successfully!!")
+        }
+        reset(); // Reset the form
+      });
 
+    
+  };
+
+  const options = [
+    { value: "JavaScript", label: "JavaScript" },
+    { value: "C++", label: "C++" },
+    { value: "HTML", label: "HTML" },
+    { value: "CSS", label: "CSS" },
+    { value: "React", label: "React" },
+    { value: "Node", label: "Node" },
+    { value: "MongoDB", label: "MongoDB" },
+    { value: "Redux", label: "Redux" },
+  ];
   return (
     <div className="max-w-screen-2xl container mx-auto xl:px-24 px-4">
       <div className="bg-[#FAFAFA] py-10 px-4 lg:px-16">
@@ -27,7 +55,7 @@ const CreateJob = () => {
             <div className="lg:w-1/2 w-full">
               <label className="block mb-2 text-lg">Company Name</label>
               <input
-                placeholder="Ex: Microsoft"
+                placeholder="Ex: Softuni"
                 {...register("companyName")}
                 className="create-job-input"
               />
@@ -39,7 +67,7 @@ const CreateJob = () => {
             <div className="lg:w-1/2 w-full">
               <label className="block mb-2 text-lg">Minimum Salary</label>
               <input
-                placeholder="$20k"
+                placeholder="$5k"
                 {...register("minPrice")}
                 className="create-job-input"
               />
@@ -96,15 +124,23 @@ const CreateJob = () => {
                 <option value="">Select Your Experience Level</option>
                 <option value="NoExperience">No experience</option>
                 <option value="Internship">Internship</option>
+                <option value="Middle">Middle</option>
+                <option value="Senior">Senior</option>
                 <option value="Work remotely">Work remotely</option>
               </select>
             </div>
           </div>
 
-          {/* 5th Skills */}
+          {/* 5 Skills */}
           <div className="">
             <label className="block mb-2 text-lg">Required Skill Sets:</label>
-            
+            <CreatableSelect
+              className="create-job-input py-4"
+              defaultValue={selectedOption}
+              onChange={setSelectedOption}
+              options={options}
+              isMulti
+            />
           </div>
 
           {/* 6 Logo */}
