@@ -76,6 +76,21 @@ async function run() {
             const result = await jobsCollection.deleteOne(filter);
             res.send(result);
         })
+        // updata a job
+    app.patch("/update-job/:id", async (req, res) => {
+        const id = req.params.id;
+        const jobData = req.body;
+        // console.log(body);
+        const filter = { _id: new ObjectId(id) };
+        const updateDoc = {
+          $set: {
+              ...jobData
+          },
+        };
+        const options = { upsert: true };
+        const result = await jobsCollection.updateOne(filter, updateDoc, options);
+        res.send(result);
+      });
 
 
         // Creating index for job sorting last job posted will show first
