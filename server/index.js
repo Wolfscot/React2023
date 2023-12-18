@@ -46,17 +46,37 @@ async function run() {
         app.post("/post-job", async (req, res) => {
             const body = req.body;
             body.createdAt = new Date();
-           
+
             const result = await jobsCollection.insertOne(body);
             if (result?.insertedId) {
-              return res.status(200).send(result);
+                return res.status(200).send(result);
             } else {
-              return res.status(404).send({
-                message: "can not insert try again leter",
-                status: false,
-              });
+                return res.status(404).send({
+                    message: "can not insert try again leter",
+                    status: false,
+                });
             }
-          });
+        });
+
+        // get jobs by user`s email 
+        app.get("/myJobs/:email", async (req, res) => {
+            // console.log("email---", req.params.email);
+            const jobs = await jobsCollection
+                .find({
+                    postedBy: req.params.email,
+                })
+                .toArray();
+            res.send(jobs);
+        });
+
+        // delete a job, created by user
+        app.delete("/job/:id", async (req, res) => {
+            const id = req.params.id;
+            const filter = { _id: new ObjectId(id) };
+            const result = await jobsCollection.deleteOne(filter);
+            res.send(result);
+        })
+
 
         // Creating index for job sorting last job posted will show first
         const indexKeys = { title: 1, category: 1 };
