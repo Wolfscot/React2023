@@ -1,16 +1,22 @@
+/* eslint-disable react/no-unknown-property */
 import React, { useState } from "react";
-
-import { useForm } from 'react-hook-form';
+import PageHeader from "../../components/PageHeader"
+import { FaDollarSign } from "react-icons/fa";
+import { useForm } from "react-hook-form";
 import CreatableSelect from "react-select/creatable";
 
 const CreateJob = () => {
   const [selectedOption, setSelectedOption] = useState(null);
+
+  // const { user } = useContext(AuthContext);
+
   const {
     register,
     handleSubmit,
     formState: { errors },
     reset 
   } = useForm();
+
   const onSubmit = (data) => {
     data.skills = selectedOption;
     fetch("http://localhost:5000/post-job", {
@@ -27,7 +33,7 @@ const CreateJob = () => {
         reset(); // Reset the form
       });
 
-    
+    // console.log(data)
   };
 
   const options = [
@@ -40,11 +46,17 @@ const CreateJob = () => {
     { value: "MongoDB", label: "MongoDB" },
     { value: "Redux", label: "Redux" },
   ];
+
+  // console.log(watch("example"));
+
   return (
     <div className="max-w-screen-2xl container mx-auto xl:px-24 px-4">
+      {/* <PageHeader title={"Post A Job"} path={"Create Job"} /> */}
+
+      {/* form */}
       <div className="bg-[#FAFAFA] py-10 px-4 lg:px-16">
-      <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
-          {/* 1 jobTitle */}
+        <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
+          {/* 1st row */}
           <div className="flex flex-col lg:flex-row items-center justify-between gap-8">
             <div className="lg:w-1/2 w-full">
               <label className="block mb-2 text-lg">Job Title</label>
@@ -57,19 +69,19 @@ const CreateJob = () => {
             <div className="lg:w-1/2 w-full">
               <label className="block mb-2 text-lg">Company Name</label>
               <input
-                placeholder="Ex: Softuni"
+                placeholder="Ex: Microsoft"
                 {...register("companyName")}
                 className="create-job-input"
               />
             </div>
           </div>
 
-          {/* 2 Salary */}
+          {/* 2nd row */}
           <div className="create-job-flex">
             <div className="lg:w-1/2 w-full">
               <label className="block mb-2 text-lg">Minimum Salary</label>
               <input
-                placeholder="$5k"
+                placeholder="$20k"
                 {...register("minPrice")}
                 className="create-job-input"
               />
@@ -84,7 +96,7 @@ const CreateJob = () => {
             </div>
           </div>
 
-          {/* 3 SType */}
+          {/* 3rd row */}
           <div className="create-job-flex">
             <div className="lg:w-1/2 w-full">
               <label className="block mb-2 text-lg">Salary Type</label>
@@ -105,7 +117,7 @@ const CreateJob = () => {
             </div>
           </div>
 
-          {/* 4 Date */}
+          {/* 4th row */}
           <div className="create-job-flex">
             <div className="lg:w-1/2 w-full">
               <label className="block mb-2 text-lg">Job Posting Date</label>
@@ -126,14 +138,12 @@ const CreateJob = () => {
                 <option value="">Select Your Experience Level</option>
                 <option value="NoExperience">No experience</option>
                 <option value="Internship">Internship</option>
-                <option value="Middle">Middle</option>
-                <option value="Senior">Senior</option>
                 <option value="Work remotely">Work remotely</option>
               </select>
             </div>
           </div>
 
-          {/* 5 Skills */}
+          {/* 5th row */}
           <div className="">
             <label className="block mb-2 text-lg">Required Skill Sets:</label>
             <CreatableSelect
@@ -145,7 +155,7 @@ const CreateJob = () => {
             />
           </div>
 
-          {/* 6 Logo */}
+          {/* 6th row */}
           <div className="create-job-flex">
             <div className="lg:w-1/2 w-full">
               <label className="block mb-2 text-lg">Company Logo</label>
@@ -156,7 +166,7 @@ const CreateJob = () => {
                 className="create-job-input"
               />
             </div>
-               {/* 7 EmplT */}
+
             <div className="lg:w-1/2 w-full">
               <label className="block mb-2 text-lg">Employment Type</label>
               <select
@@ -171,7 +181,7 @@ const CreateJob = () => {
             </div>
           </div>
 
-          {/* 8 row Desc */}
+          {/* 7th row */}
           <div className="w-full">
           <label className="block mb-2 text-lg">Job Description</label>
           <textarea
@@ -179,11 +189,11 @@ const CreateJob = () => {
               rows={6}
               {...register("description")}
               placeholder="job description"
-              defaultValue={"Lorem ipsum"}
+              defaultValue={"Mollit in laborum tempor Lorem incididunt irure. Aute eu ex ad sunt. Pariatur sint culpa do incididunt eiusmod eiusmod culpa. laborum tempor Lorem incididunt."}
             />
           </div>
 
-          {/* author */}
+          {/* last row */}
           <div className="w-full">
           <label className="block mb-2 text-lg">Job Posted by</label>
           <input
@@ -202,7 +212,7 @@ const CreateJob = () => {
         </form>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default CreateJob
+export default CreateJob;

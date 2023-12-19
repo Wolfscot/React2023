@@ -1,10 +1,9 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-
+import { AuthContext } from "../../context/AuthProvider";
 
 const MyJobs = () => {
-  
-  
+  const { user } = useContext(AuthContext);
   const [jobs, setJobs] = useState([]);
   const [searchText, setSearchText] = useState("");
   // console.log(searchText)
@@ -16,10 +15,10 @@ const MyJobs = () => {
   // console.log(control)
   useEffect(() => {
     setIsLoading(true);
-    fetch(`http://localhost:5000/myJobs/gkrasteva88@gmail.com`)
+    fetch(`http://localhost:5000/myJobs/${user?.email}`)
       .then((res) => res.json())
       .then((data) => {
-        
+        // console.log(data);
         setJobs(data);
         setIsLoading(false);
       });
@@ -48,7 +47,7 @@ const MyJobs = () => {
   }
 };
 
-// delete a job
+// delete a books
 const handleDelete = (id) => {
   // console.log(id)
   fetch(`http://localhost:5000/job/${id}`, {
@@ -57,7 +56,7 @@ const handleDelete = (id) => {
     .then((res) => res.json())
     .then((data) => {
       // console.log(data);
-      
+      // setAllBooks(data);
       if(data.acknowledged === true){
         alert("Job Deleted Successfully!!")
       }
@@ -71,7 +70,7 @@ const prevPage = () => {
 };
 
 console.log(currentJobs)
-
+// 
   return (
     <div className="max-w-screen-2xl container mx-auto xl:px-24 px-4">
       <div className="my-jobs-container">
@@ -90,7 +89,7 @@ console.log(currentJobs)
           </button>
         </div>
 
-        {/* all user jobs */}
+        {/* table */}
         <section className="py-1 bg-blueGray-50">
           <div className="w-full xl:w-8/12 mb-12 xl:mb-0 px-4 mx-auto mt-5">
             <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded ">
@@ -137,7 +136,7 @@ console.log(currentJobs)
                     </tr>
                   </thead>
 
-                  {/* spreloader */}
+                  {/* set loding here */}
                   {isLoading ? (
                     <div className="flex items-center justify-center h-20">
                       <p>loading......</p>
@@ -174,7 +173,7 @@ console.log(currentJobs)
               </div>
             </div>
           </div>
-        {/* pagination same as home, but for user only*/}
+                  {/* pagination */}
         <div className="flex justify-center text-black space-x-8">
           {currentPage > 1 && (
             <button onClick={prevPage} className="hover:underline">

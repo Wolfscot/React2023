@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { useForm } from 'react-hook-form';
 import { useLoaderData, useParams } from 'react-router-dom';
 import CreatableSelect from "react-select/creatable";
-import Title from '../../components/Title/Title'
+import PageHeader from '../../components/PageHeader';
 
 const UpdateJob = () => {
     const { id } = useParams();
@@ -57,7 +57,7 @@ const UpdateJob = () => {
 
   return (
     <div className="max-w-screen-2xl container mx-auto xl:px-24 px-4">
-    <Title title={"Update This Job"} path={"Edit Job"} />
+    <PageHeader title={"Update This Job"} path={"Edit Job"} />
 
     {/* form */}
     <div className="bg-[#FAFAFA] py-10 px-4 lg:px-16">

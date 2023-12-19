@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import Title from '../../components/Title/Title'
+import PageHeader from '../../components/PageHeader'
 
 const Salary = () => {
   const [salary, setSalary] = useState([]);
@@ -20,9 +20,9 @@ const Salary = () => {
     };
   return (
     <div className='max-w-screen-2xl container mx-auto xl:px-24 px-4'>
-      <Title title={"Estimate Salary"} path={"Salary"}/>
+      <PageHeader title={"Estimate Salary"} path={"Salary"}/>
 
-      {/* job salary search  */}
+      {/* job salary search input and btn */}
       <div className='mt-5'>
       <div className="search-box p-2 text-center mb-2">
           <input
@@ -58,4 +58,4 @@ const Salary = () => {
   )
 }
 
-export default Salary;
+export default Salary
