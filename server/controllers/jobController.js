@@ -1,38 +1,52 @@
-module.exports = (router, postManager, authMiddlewear) => {
+module.exports = (router, jobManager, authMiddlewear) => {
     router.get("/", async (req, res) => {
-        const posts = await postManager.getAll()
+        const jobs = await jobManager.getAll()
 
         try {
-            res.status(200).send(posts)
+            res.status(200).send(jobs)
         } catch (err) {
             res.status(404).send(err.message)
         }
     })
 
     router.post("/create", authMiddlewear, async (req, res) => {
-        const { imageUrl, brand, model, productionYear, description, createdAt } = req.body
+        const { 
+            companyName,
+            jobTitle,
+            companyLogo,
+            minPrice,
+            maxPrice,
+            salaryType,
+            jobLocation,
+            postingDate,
+            experienceLevel,
+            employmentType,
+            description,
+            
+         } = req.body
 
         try {
             const owner = req.user
-            const post = await postManager.create(imageUrl, brand, model, productionYear, description, createdAt, owner)
+            const job = await jobManager.create( companyName,
+                jobTitle,
+                companyLogo,
+                minPrice,
+                maxPrice,
+                salaryType,
+                jobLocation,
+                postingDate,
+                experienceLevel,
+                employmentType,
+                description,
+                owner)
 
-            res.status(200).send(post)
+            res.status(200).send(job)
         } catch (err) {
             res.status(404).send(err.message)
         }
 
     })
-
-    router.get("/most/:prop", async (req, res) => {
-        const prop = req.params.prop
-
-        try {
-            const post = await postManager.getMost(prop)
-            res.status(200).send(post)
-        } catch (err) {
-            res.status(404).send(err)
-        }
-    })
+ 
 
     router.put("/:_id", authMiddlewear, async (req, res) => {
         const _id = req.params._id
@@ -40,8 +54,8 @@ module.exports = (router, postManager, authMiddlewear) => {
 
         try {
             const userId = req.user
-            const post = await postManager.edit(userId, _id, data)
-            res.status(200).send(post)
+            const job = await jobManager.edit(userId, _id, data)
+            res.status(200).send(job)
         } catch (err) {
             res.status(404).send(err.message)
         }
@@ -52,8 +66,8 @@ module.exports = (router, postManager, authMiddlewear) => {
 
         try {
             const userId = req.user
-            const post = await postManager.delete(userId, _id)
-            res.status(200).send(post)
+            const job = await jobManager.delete(userId, _id)
+            res.status(200).send(job)
         } catch (err) {
             res.status(404).send(err.message)
         }
@@ -63,23 +77,14 @@ module.exports = (router, postManager, authMiddlewear) => {
         const _id = req.params._id
 
         try {
-            const post = await postManager.getOne(_id)
-            res.status(200).send(post)
+            const job = await jobManager.getOne(_id)
+            res.status(200).send(job)
         } catch (err) {
             res.status(404).send(err.message)
         }
     })
 
-    router.get("/user/:ownerId", async (req, res) => {
-        const ownerId = req.params.ownerId
-
-        try {
-            const post = await postManager.getByOwnerId(ownerId)
-            res.status(200).send(post)
-        } catch (err) {
-            res.status(404).send(err.message)
-        }
-    })
+    
 
     return router
 }

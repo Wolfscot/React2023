@@ -1,4 +1,4 @@
-const schema = new mongoose.Schema({
+module.exports = (mongoose) => { const schema = new mongoose.Schema({
     companyName: {
         type: String,
         required: true
@@ -10,7 +10,15 @@ const schema = new mongoose.Schema({
     companyLogo: {
         type: String,
         required: true
-    },    
+    },
+    minPrice:  {
+        type: String,
+        required: true
+    },
+    maxPrice:  {
+        type: String,
+        required: true
+    },   
     salaryType: {
         type: String,
         required: true
@@ -54,3 +62,4 @@ schema.pre('findOneAndDelete', async function () {
 
 const Job = mongoose.model("Job", schema)
 return Job
+}

@@ -1,6 +1,6 @@
 import * as request from '../library/request';
 
-const baseUrl = 'http://localhost:5000/comments';
+const baseUrl = 'http://localhost:5000/reviews';
 
 export const getAll = async (jobId) => {
     const query = new URLSearchParams({
