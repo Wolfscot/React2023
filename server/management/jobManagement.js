@@ -5,44 +5,16 @@ module.exports = (Job) => {
         return userId == ownerId
     }
     return {
-        create: async function (
-            companyName,
-            jobTitle,
-            companyLogo,
-            minPrice,
-            maxPrice,
-            salaryType,
-            jobLocation,
-            postingDate,
-            experienceLevel,
-            employmentType,
-            description,
-            owner
-        ) {
-            const newJob = new Job({
-                companyName,
-                jobTitle,
-                companyLogo,
-                minPrice,
-                maxPrice,
-                salaryType,
-                jobLocation,
-                postingDate,
-                experienceLevel,
-                employmentType,
-                description,
-                owner
-            })
+        create: async function (imageUrl, brand, model, productionYear, description, createdAt, owner) {
+            const newJob = new Job({ imageUrl, brand, model, productionYear, description, createdAt, updatedAt: createdAt, owner })
             await newJob.save()
 
             return newJob
         },
-
         getAll: async function () {
-            return Job.find().select('companyName jobTitle companyLogo minPrice maxPrice salaryType jobLocation postingDate experienceLevel employmentType description owner');
-
+            return Job.find().select('_id imageUrl brand model productionYear description owner')
         },
-
+        
         edit: async function (userId, _id, data) {
             const isOwner = await compareOwners(userId, _id)
 
@@ -52,9 +24,6 @@ module.exports = (Job) => {
 
             const updatedJob = Job.findByIdAndUpdate(_id, data)
             return updatedJob
-        },
-        getByOwnerId: async function (ownerId) {
-            return Post.find({ owner: ownerId }).select('_id')
         },
         delete: async function (userId, _id) {
             const isOwner = compareOwners(userId, _id)
@@ -66,7 +35,7 @@ module.exports = (Job) => {
             await Job.findByIdAndDelete(_id)
             return {}
         },
-
+       
         review: async function (_id, reviewId, action) {
             const job = await Job.findById(_id)
             if (action == "1") {
@@ -77,6 +46,6 @@ module.exports = (Job) => {
             }
             job.save()
         }
-
+       
     }
 }
