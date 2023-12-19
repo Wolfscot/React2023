@@ -5,6 +5,9 @@ const jwt = require('./utils/jwt')
 
 const app = express()
 const PORT = 5000
+<<<<<<< HEAD
+const SECRET = 'JOBSEEKER'
+=======
 const SECRET = 'SECRET';
 
 const cors = require('cors');
@@ -32,11 +35,21 @@ const corsOptions = {
 // Enable preflight requests for all routes
 app.options('*', cors(corsOptions));
 
+>>>>>>> parent of 10cda60 (server finished)
 
 //Config
 const config = require('./config/config')
 config(app, express, mongoose)
 
+<<<<<<< HEAD
+//MIddlewears
+//onst authMiddlewearImport = require('./middlewears/authMiddlewear')
+//onst authMiddlewear = authMiddlewearImport(jwt, SECRET)
+
+//Routes
+router = require('./router/mainRouter')
+require('./router/mainRouter')(app, express, mongoose, bcrypt, jwt, SECRET, authMiddlewear)
+=======
 //MIddlewares
 const authMiddlewareImport = require('./middleware/authMiddleware')
 const authMiddleware = authMiddlewareImport(jwt, SECRET)
@@ -44,5 +57,6 @@ const authMiddleware = authMiddlewareImport(jwt, SECRET)
 //Routes
 router = require('./router/mainRouter')
 require('./router/mainRouter')(app, express, mongoose, bcrypt, jwt, SECRET, authMiddleware)
+>>>>>>> parent of 10cda60 (server finished)
 
 app.listen(PORT, () => console.log(`app running on port ${PORT}`))
