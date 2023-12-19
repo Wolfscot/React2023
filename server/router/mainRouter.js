@@ -14,5 +14,4 @@ module.exports = (app, express, mongoose, bcrypt, jwt, SECRET, authMiddleware) =
     app.use("/users", userController)
     app.use("/jobs", jobController)   
     app.use("/reviews", reviewController)
-    
 }
