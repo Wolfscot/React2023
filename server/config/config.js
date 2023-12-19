@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-const uri = `mongodb://127.0.0.1:27017/carstagram`
-=======
 const mongoAtlasUri =`mongodb+srv://gkrasteva88:jobseeker69@cluster0.9wuh7xk.mongodb.net/?retryWrites=true&w=majority`;
->>>>>>> parent of 10cda60 (server finished)
 
 
 module.exports = async (app, express, mongoose) => {

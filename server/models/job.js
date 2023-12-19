@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-const schema = new mongoose.Schema({
-=======
 module.exports = (mongoose) => { const schema = new mongoose.Schema({
->>>>>>> parent of 10cda60 (server finished)
     companyName: {
         type: String,
         required: true
@@ -14,9 +10,6 @@ module.exports = (mongoose) => { const schema = new mongoose.Schema({
     companyLogo: {
         type: String,
         required: true
-<<<<<<< HEAD
-    },    
-=======
     },
     minPrice:  {
         type: String,
@@ -26,7 +19,6 @@ module.exports = (mongoose) => { const schema = new mongoose.Schema({
         type: String,
         required: true
     },   
->>>>>>> parent of 10cda60 (server finished)
     salaryType: {
         type: String,
         required: true
@@ -70,7 +62,4 @@ schema.pre('findOneAndDelete', async function () {
 
 const Job = mongoose.model("Job", schema)
 return Job
-<<<<<<< HEAD
-=======
 }
->>>>>>> parent of 10cda60 (server finished)
